@@ -1,0 +1,53 @@
+using System;
+
+class CuentaBancaria
+{
+    private string titular;
+    private double saldo;
+
+    public CuentaBancaria(string titular)
+    {
+        this.titular = titular;
+        this.saldo = 0;
+    }
+
+    public void Depositar(double cantidad)
+    {
+        saldo += cantidad;
+        Console.WriteLine("Depósito realizado. Saldo actual: {0}", saldo);
+    }
+
+    public void Retirar(double cantidad)
+    {
+        if (cantidad > saldo)
+        {
+            Console.WriteLine("No hay suficiente saldo para realizar la operación");
+        }
+        else
+        {
+            saldo -= cantidad;
+            Console.WriteLine("Retiro realizado. Saldo actual: {0}", saldo);
+        }
+    }
+
+    public double ObtenerSaldo()
+    {
+        return saldo;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        CuentaBancaria miCuenta = new CuentaBancaria("Juan Perez");
+
+        Console.WriteLine("Saldo actual: {0}", miCuenta.ObtenerSaldo());
+
+        miCuenta.Depositar(500);
+
+        miCuenta.Retirar(200);
+
+        Console.WriteLine("Saldo actual: {0}", miCuenta.ObtenerSaldo());
+    }
+}
